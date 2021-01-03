@@ -1,1 +1,100 @@
-@import './normalize.scss';
+@import "./sassConfig.scss";
+@import "./normalize.scss";
+@import "./ui.scss";
+@import "./icon.scss";
+// 公共样式
+//浮动
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.clearfix {
+    @extend %clearfix;
+}
+
+//字体大小
+.fz-24 {
+    font-size: 24px;
+}
+
+//定位
+.p-r {
+    position: relative;
+}
+
+.p-a {
+    position: absolute;
+}
+
+//颜色
+.color-main {
+    color: $color-main;
+}
+
+//文字对齐
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+//按钮
+.button-main {
+    width: 240px;
+    height: 84px;
+    line-height: 84px;
+    text-align: center;
+    color: #fff;
+    border-radius: 100px;
+    font-size: 26px;
+    font-weight: 300;
+    display: block;
+    margin: 0 17px;
+    background-color: $color-main;
+}
+
+//用户界面
+.user-container {
+    padding: 0 30px;
+}
+
+.group-links {
+    a {
+        position: relative;
+        display: block;
+        margin: 0 -30px;
+        padding: 0 30px;
+        height: 64px;
+        line-height: 64px;
+        color: rgba(255, 255, 255, 0.4);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        font-size: 15px;
+    }
+    .icon {
+        margin: 0 16px -10px 0;
+    }
+    .arrow:after {
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        margin-top: -5px;
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-top: 1px solid #fff;
+        border-right: 1px solid #fff;
+        @include webkit(box-sizing, border-box);
+        @include webkit(transform, rotate(45deg));
+        opacity: 0.1;
+    }
+}

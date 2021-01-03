@@ -1,0 +1,46 @@
+.user-info {
+    padding: 84px 0 80px 10px;
+    display: flex;
+    img {
+        width: 80px;
+        height: 80px;
+        border-radius: 100%;
+        border: 6px solid #2f343a;
+    }
+    .meta {
+        flex: 1;
+        padding-left: 18px;
+    }
+    .name {
+        color: #909090;
+        font-size: 18px;
+        line-height: 43px;
+    }
+    span {
+        height: 27px;
+        line-height: 27px;
+        display: inline-block;
+        padding: 0 17px;
+        background-color: #10a0f2;
+        border-radius: 100px;
+        color: #fff;
+        font-size: 14px;
+    }
+}
+
+.logout {
+    position: absolute;
+    bottom: 60px;
+    margin-left: -82px;
+    left: 50%;
+    width: 165px;
+    height: 58px;
+    line-height: 58px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    background-color: #2d3339;
+    border-radius: 100px;
+    border: none;
+    outline: none;
+}

@@ -6,14 +6,34 @@ Vue.use(VueRouter);
 
 const routes = [{
     path: "/",
-    name: "index",
-    component: index
+    name: "Index",
+    component: index,
+    children: [{
+            path: "/user",
+            name: "User",
+            component: () =>
+                import ("../views/user/index.vue"),
+        },
+        //安全设置
+        {
+            path: "/safe",
+            name: "Safe",
+            component: () =>
+                import ("../views/safe/index.vue"),
+        },
+        {
+            path: "/password",
+            name: "Password",
+            component: () =>
+                import ("../views/safe/password.vue"),
+        },
+    ],
 }, ];
 
 const router = new VueRouter({
     mode: "history",
     base: process.env.BASE_URL,
-    routes
+    routes,
 });
 
 export default router;

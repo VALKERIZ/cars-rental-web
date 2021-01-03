@@ -5,11 +5,19 @@ import store from "./store";
 
 Vue.config.productionTip = false;
 
-//插件
-import './plugin/aMap';
+//高德地图插件
+import "./plugins/aMap";
+
+//全局组件
+import "./components/back";
+
+//ElementUI
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
+Vue.use(ElementUI);
 
 new Vue({
     router,
     store,
-    render: h => h(App)
+    render: (h) => h(App),
 }).$mount("#app");

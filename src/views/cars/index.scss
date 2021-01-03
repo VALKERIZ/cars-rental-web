@@ -1,0 +1,42 @@
+.cars-wrap {
+    position: fixed;
+    bottom: 94px;
+    left: 0;
+    right: 0;
+    z-index: 11;
+}
+
+.cars-wrap-swiper {
+    position: relative;
+    padding: 0 155px;
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 60px;
+        height: 100px;
+        border-radius: 100px;
+        background-color: #fff;
+        margin-top: -50px;
+        top: 50%;
+        color: $color-main;
+        outline: none;
+        @include webkit(box-shadow, 0 0 18px 0 rgba(0, 0, 0, 0.2));
+        @include webkit(transition, all 0.3s ease 0s);
+        &:hover {
+            background-color: $color-main;
+            color: $color-blur;
+        }
+        &:after {
+            font-size: 22px;
+            font-weight: 700;
+        }
+    }
+    .swiper-button-prev {
+        left: 53px;
+    }
+    .swiper-button-next {
+        right: 53px;
+    }
+    .swiper-container {
+        overflow: initial;
+    }
+}
