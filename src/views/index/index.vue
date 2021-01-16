@@ -10,6 +10,8 @@
     <!-- <Cars /> -->
     <!-- 地图组件 -->
     <Amap />
+    <!-- 登录 -->
+    <Login></Login>
   </div>
 </template>
 
@@ -17,12 +19,14 @@
 import Amap from "../amap";
 import Cars from "../cars";
 import Navbar from "@c/navbar";
+import Login from "./login";
 export default {
   name: "Index",
   components: {
     Amap,
     Cars,
     Navbar,
+    Login,
   },
   data() {
     return {};
