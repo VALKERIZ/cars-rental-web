@@ -3,7 +3,7 @@
     <section class="cars-item">
       <header>
         <h4 class="cars-logo">
-          <img src="@/assets/cars-logo.png" alt="465464654" />
+          <img src="@/assets/images/cars-logo.png" alt="465464654" />
           <span class="name">465464654</span>
         </h4>
         <p class="cars-attr">地球也会危害健康</p>
@@ -29,7 +29,7 @@
             <sub>KM</sub>
           </p>
         </div>
-        <img src="@/assets/pic001.jpg" alt="464123qwe" />
+        <img src="@/assets/images/pic001.jpg" alt="464123qwe" />
       </div>
       <footer>
         <a href="javascript: void(0);" class="cars-link">翔安隧道停车场</a>
@@ -44,12 +44,12 @@
         </h4>
         <header>
           <h4 class="cars-logo">
-            <img src="@/assets/cars-logo.png" alt="465464654" />
+            <img src="@/assets/images/cars-logo.png" alt="465464654" />
             <span class="name">465464654</span>
           </h4>
           <p class="cars-attr">地球也会危害健康</p>
         </header>
-        <img src="@/assets/pic001.jpg" alt="464123qwe" width="100%" />
+        <img src="@/assets/images/pic001.jpg" alt="464123qwe" width="100%" />
         <div class="clearfix">
           <div class="pull-left fz-24">粤 B75AQ2</div>
           <p class="distance pull-right">

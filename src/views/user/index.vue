@@ -1,7 +1,7 @@
 <template>
   <div class="user-container">
     <div class="user-info">
-      <img src="@/assets/face.png" alt="" />
+      <img src="@/assets/images/face.png" alt="" />
       <div class="meta">
         <h4 class="name">4674683521564897</h4>
         <span>
