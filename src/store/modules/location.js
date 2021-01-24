@@ -3,7 +3,6 @@ const state = {
 };
 const mutations = {
     SELF_LOCATION(state) {
-        console.log(state);
         state.selfLocation = !state.selfLocation;
     },
 };

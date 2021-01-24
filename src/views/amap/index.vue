@@ -4,7 +4,6 @@
       vid="amapContainer"
       :events="events"
       :amap-manager="amapManager"
-      :center="center"
       :zoom="zoom"
       class="amap-demo"
     >
@@ -72,8 +71,7 @@ export default {
     const _this = this;
     return {
       map: null,
-      zoom: 15,
-      center: [0, 0],
+      zoom: 13,
       amapManager,
       self_lng: "",
       self_lat: "",
@@ -118,15 +116,15 @@ export default {
     },
     // 获取自身定位成功的回调
     selfLocationComplete(result) {
-      this.self_lng = result.position.lng;
-      this.self_lat = result.position.lat;
+      this.self_lng = result[0];
+      this.self_lat = result[1];
       const obj = {
         radius: 4,
         color: "#393e43",
         strokeOpacity: "0.2",
         strokeWeight: "30",
       };
-      obj.center = [this.self_lng, this.self_lat];
+      obj.center = result;
       this.circle.push(obj);
     },
     // 步行导航
@@ -139,7 +137,6 @@ export default {
       });
     },
     walkingComplete(result) {
-      console.log(result);
       this.parkingInfo = [
         {
           position: this.parkingData.lnglat.split(","),
@@ -164,30 +161,5 @@ export default {
 </script>
 
 <style lang="scss">
-.amap-wrap {
-  height: 100vh;
-}
-.parkingInfoWrap {
-  color: white;
-  border-radius: 100px;
-  padding: 0 10px 0 5px;
-  font-size: 12px;
-  background-color: #34393f;
-  width: 160px;
-}
-.parkingInfoNumber {
-  font-size: 20px;
-  margin-right: 5px;
-  line-height: 50px;
-  height: 60px;
-  vertical-align: sub;
-}
-.parkingInfoLine {
-  display: inline-block;
-  height: 15px;
-  width: 1px;
-  background-color: white;
-  opacity: 0.3;
-  margin: 0 10px -3px;
-}
+@import "./index.scss";
 </style>

@@ -1,0 +1,29 @@
+.amap-wrap {
+    height: 100vh;
+}
+
+.parkingInfoWrap {
+    color: white;
+    border-radius: 100px;
+    padding: 0 10px 0 5px;
+    font-size: 12px;
+    background-color: #34393f;
+    width: 160px;
+}
+
+.parkingInfoNumber {
+    font-size: 20px;
+    margin-right: 4px;
+    line-height: 50px;
+    height: 60px;
+    vertical-align: sub;
+}
+
+.parkingInfoLine {
+    display: inline-block;
+    height: 15px;
+    width: 1px;
+    background-color: white;
+    opacity: 0.3;
+    margin: 0 10px -3px;
+}

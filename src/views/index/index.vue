@@ -7,7 +7,7 @@
     <!-- 底部操作栏 -->
     <Navbar />
     <!-- 汽车列表 -->
-    <!-- <Cars /> -->
+    <Cars ref="cars" />
     <!-- 地图组件 -->
     <Amap
       @callbackComponent="callbackComponent"
@@ -26,6 +26,7 @@ import Navbar from "@c/navbar";
 import Login from "./login";
 // API
 import { Parking } from "@/api/parking";
+import { GetCarsList, GetLeaseList } from "@/api/cars";
 export default {
   name: "Index",
   components: {
@@ -67,21 +68,41 @@ export default {
           item.text = `<div style="width: 60px; font-size: 20px; color: #fff; text-align: center;line-height: 50px; height: 60px;">${item.carsNumber}</div>`;
           item.events = {
             click: (e) => {
+              this.$store.commit("app/SET_CARS_LIST_REQUEST", true);
               this.walking(e);
+              this.getCarsList(e);
             },
           };
         });
         this.parking = data;
       });
     },
+    // 路线规划
     walking(e) {
       const data = e.target.getExtData();
-      console.log(data);
       this.$refs.amap.saveData({
         key: "parkingData",
         value: data,
       });
-      this.$refs.amap.handlerWalking(data.lnglat.split(","));
+      this.$refs.amap && this.$refs.amap.handlerWalking(data.lnglat.split(","));
+    },
+    // 停车场车辆列表
+    getCarsList(e) {
+      const data = e.target.getExtData();
+      this.$refs.cars && this.$refs.cars.getCarsList(data.id);
+    },
+  },
+  watch: {
+    "$store.state.app.isClickCarsList": {
+      handler(newValue) {
+        if (!newValue) {
+          // 清空车辆列表
+          this.$refs.cars.carsList = [];
+          // 清除覆盖物详情
+          this.$refs.amap.parkingInfo = [];
+        } // 为 false 时，点击的不是车辆列表
+        this.$store.commit("app/SET_CARS_LIST_STATUS", true);
+      },
     },
   },
 };

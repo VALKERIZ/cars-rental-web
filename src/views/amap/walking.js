@@ -4,6 +4,7 @@ export function Walking(params) {
         walking = new AMap.Walking({
             map: params.map,
             hideMarkers: true,
+            autoFitView: true,
         });
     }
     //根据起终点坐标规划步行路线
@@ -16,7 +17,7 @@ export function Walking(params) {
                 if (params.complete && typeof params.complete == "function") {
                     params.complete(result); //定位成功
                 }
-                // console.log('绘制步行路线完成')
+                console.log("绘制步行路线完成");
             } else {
                 console.log("步行路线数据查询失败" + result);
             }

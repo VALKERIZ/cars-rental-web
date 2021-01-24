@@ -1,30 +1,23 @@
-.cars-list {
-    position: relative;
-}
-
 .cars-item {
-    border-radius: 24px;
-    background-color: #fff;
-    @include webkit(box-shadow, 0 0 18px 0 rgba(0, 0, 0, 0.2));
     height: 257px;
-    padding: 30px 30px 0;
     margin: auto;
+    padding: 25px 20px 0;
+    background-color: #fff;
+    border-radius: 24px;
+    @include webkit(box-shadow, 0 0 18px 0 rgba(0, 0, 0, 0.2));
     @include webkit(box-sizing, border-box);
     header {
-        @include webkitA(display, flex);
-        h4,
-        p {
-            flex: 1;
-        }
+        @extend %clearfix;
     }
 }
 
 .cars-logo {
+    float: left;
     img {
         display: inline-block;
         height: 34px;
-        vertical-align: middle;
         margin-right: 10px;
+        vertical-align: middle;
     }
     .name {
         font-size: 16px;
@@ -32,41 +25,49 @@
 }
 
 .cars-attr {
-    text-align: right;
-    opacity: 0.5;
+    float: right;
     line-height: 34px;
+    opacity: 0.5;
+    span {
+        padding: 0 5px;
+    }
+    .type {
+        font-size: 18px;
+        font-style: italic;
+    }
 }
 
 .cars-content {
+    position: relative;
     margin: 11px 0 7px;
-    @include webkitA(display, flex);
-    align-items: center;
+    @extend %clearfix;
     img {
-        flex: 1;
+        float: right;
         height: 120px;
     }
     .info {
-        flex: 1;
-        height: 60px;
-        @include webkitA(display, flex);
+        display: flex;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
         align-items: center;
-        flex-wrap: wrap;
     }
-    // 车牌号
-    .licence {
+    .cars-number {
         font-size: 18px;
-        flex-basis: 100%;
     }
-    .electric {
+    .cars-electric {
+        padding-top: 10px;
+        display: inline-block;
         li {
             display: inline-block;
             width: 7px;
             height: 24px;
+            margin-right: 3px;
             background-color: #e1e1e1;
             border-radius: 100px;
-            margin-right: 3px;
         }
-        // 电量样式生成
         @for $i from 1 through 10 {
             &.active-li-#{$i} {
                 li:nth-child(-n + #{$i}) {
@@ -79,6 +80,7 @@
 
 .distance {
     margin-left: 5px;
+    display: inline-block;
     strong {
         margin: 0 3px;
         font-size: 22px;
@@ -88,62 +90,67 @@
         top: -2px;
     }
     sub:first-of-type {
-        opacity: 0.8;
+        opacity: 0.6;
     }
 }
 
-.cars-link {
+.parking-link {
+    position: relative;
     display: block;
     border-top: 1px solid #e1e1e1;
     color: $color-main;
     opacity: 0.8;
     line-height: 53px;
-    position: relative;
     &:after {
         content: "";
         position: absolute;
+        right: 0;
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        margin-top: -8px;
         border-top: 1px solid #d6d7d9;
         border-right: 1px solid #d6d7d9;
         @include webkit(transform, rotate(45deg));
-        width: 8px;
-        height: 8px;
-        right: 0;
-        top: 50%;
-        margin-top: -8px;
     }
 }
 
-.cars-detail {
+.cars-detailed {
+    // display: none;
     position: absolute;
-    right: 0;
     left: 0;
+    right: 0;
     bottom: 0;
+    padding-top: 0;
+    height: 0;
+    @include webkit(transition, all 0.3s ease 0s);
     .scroll {
         height: 100%;
         overflow-y: auto;
     }
     .column {
         position: relative;
+        padding: 26px 0 20px;
+        margin-bottom: 19px;
         font-size: 20px;
-        padding-bottom: 20px;
         color: #34393f;
         border-bottom: 1px solid #e1e1e1;
-        margin-bottom: 20px;
         .close {
-            display: block;
             position: absolute;
+            right: 0;
+            top: 25px;
+            display: block;
             width: 26px;
             height: 26px;
-            top: 0;
-            right: 0;
             cursor: pointer;
             &:before,
             &:after {
                 content: "";
                 position: absolute;
-                height: 20px;
                 top: 50%;
                 left: 50%;
+                height: 20px;
+                margin-left: -1px;
                 margin-top: -10px;
                 border-left: 2px solid #999c9f;
             }
@@ -155,9 +162,9 @@
             }
         }
     }
-    .electric-box {
-        margin-top: 20px;
+    .cars-electric-box {
         padding: 15px;
+        margin-top: 17px;
         border-radius: 100px;
         background-color: #fff;
         @include webkit(box-shadow, 0 0 10px 0 rgba(0, 0, 0, 0.1));
@@ -169,18 +176,17 @@
         }
         .e-high {
             position: absolute;
+            left: 0;
+            top: 0;
             background-color: #0f9cee;
             height: 100%;
-            top: 0;
-            left: 0;
             border-radius: 100px;
         }
     }
     .info {
         margin: 32px 0 28px;
-        opacity: 0.8;
     }
-    .button-main {
+    .select-car-btn {
         position: absolute;
         left: 50%;
         margin-left: -120px;
@@ -191,20 +197,20 @@
 .cars-type-list {
     li {
         height: 43px;
+        padding: 0 17px 0 20px;
+        margin-bottom: 15px;
         background-color: #f3f3f3;
         border-color: #f3f3f3;
-        border-width: 2px;
         border-style: solid;
+        border-width: 2px;
         border-radius: 10px;
-        padding: 0 20px;
-        line-height: 43px;
         font-size: 16px;
-        margin-bottom: 15px;
+        line-height: 43px;
         &.current {
             border-color: #0f9cee;
         }
     }
-    .type {
+    .name {
         float: left;
     }
     .price {
@@ -212,21 +218,20 @@
     }
 }
 
-.cars-clause-dec {
+.clause-dec {
     @extend %clearfix;
-    text-indent: 1em;
     i {
         float: right;
         width: 20px;
         height: 20px;
         border-radius: 100px;
-        background-color: #ccc;
+        background-color: #cccccc;
         &.current {
             background-color: $color-main;
         }
         &:before {
-            display: block;
             content: "";
+            display: block;
             width: 8px;
             height: 4px;
             margin: 6px 0 0 5px;
