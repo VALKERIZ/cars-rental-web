@@ -8,8 +8,11 @@ Vue.config.productionTip = false;
 //高德地图插件
 import "./plugins/aMap";
 
-//全局组件
+//全局组件注入
 import "./components/back";
+
+// 全局路由守卫
+import "./router/per";
 
 //ElementUI
 import ElementUI from "element-ui";

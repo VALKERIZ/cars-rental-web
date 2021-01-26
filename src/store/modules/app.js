@@ -3,8 +3,12 @@ const state = {
     isClickCarsList: true,
     // 是否是请求车辆列表
     isRequestCarsList: false,
+    routerName: "",
 };
 const mutations = {
+    SET_ROUTER_NAME(state, value) {
+        state.routerName = value;
+    },
     SET_CARS_LIST_STATUS(state, value) {
         state.isClickCarsList = value;
     },

@@ -226,6 +226,7 @@
         height: 20px;
         border-radius: 100px;
         background-color: #cccccc;
+        cursor: pointer;
         &.current {
             background-color: $color-main;
         }

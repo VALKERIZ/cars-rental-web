@@ -1,6 +1,6 @@
 import service from "../utils/request";
 /**
- * 获取验证码
+ * 获取车辆列表
  */
 export function GetCarsList(data = {}) {
     return service.request({

@@ -8,6 +8,7 @@ export function SelfLocation(params) {
     //自动获取用户IP，返回当前城市
     citySearch.getLocalCity((status, result) => {
         if (status === "complete" && result.info === "OK") {
+            console.log("定位成功");
             //地图显示当前城市
             params.map.setBounds(result.bounds);
             // 计算中心点

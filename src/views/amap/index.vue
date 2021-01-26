@@ -3,6 +3,7 @@
     <el-amap
       vid="amapContainer"
       :events="events"
+      :center="center"
       :amap-manager="amapManager"
       :zoom="zoom"
       class="amap-demo"
@@ -71,7 +72,8 @@ export default {
     const _this = this;
     return {
       map: null,
-      zoom: 13,
+      zoom: 15,
+      center: [0, 0],
       amapManager,
       self_lng: "",
       self_lat: "",

@@ -1,6 +1,6 @@
 <template>
   <div>
-  <!-- 车辆信息略缩图 -->
+    <!-- 车辆信息略缩图 -->
     <section class="cars-item" @click="getCasrInfo">
       <header>
         <h4 class="cars-logo">
@@ -45,7 +45,7 @@
         }}</a>
       </footer>
     </section>
-<!-- 车辆详细信息 -->
+    <!-- 车辆详细信息 -->
     <section
       class="cars-item cars-detailed"
       :style="'height:' + cars_info_height"
@@ -77,10 +77,7 @@
         </div>
         <div class="cars-electric-box">
           <div class="p-r">
-            <span
-              class="e-high"
-              :style="`width: ${power}%`"
-            ></span>
+            <span class="e-high" :style="`width: ${power}%`"></span>
             <span class="e-bg"></span>
           </div>
         </div>
@@ -148,8 +145,8 @@ export default {
           val = Math.round(electric / 10) + Math.round(oil / 10);
           break;
       }
-      let power = (val+ Math.random()) *10
-      this.power = power >100? 100 : power
+      let power = (val + Math.random()) * 10;
+      this.power = power > 100 ? 100 : power;
       console.log(this.power);
       return `active-li-${val}`;
     },
@@ -166,7 +163,7 @@ export default {
       // 租赁ID
       leaseId: "",
       // 详细->剩余能量百分比
-      power:0
+      power: 0,
     };
   },
   methods: {
@@ -175,7 +172,6 @@ export default {
     },
     /** 选择租赁类型 */
     selectLeaseType(data) {
-      console.log("selectLeaseType", data);
       this.leaseId = data.carsLeaseTypeId;
     },
     /** 打开车辆信息 */

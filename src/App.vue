@@ -8,7 +8,7 @@
 export default {
   name: "App",
   mounted() {
-    document.addEventListener("mouseup", (e) => {
+    document.addEventListener("click", (e) => {
       // 车辆列表
       const carsSwiper = document.getElementsByClassName("cars-wrap")[0];
       if (carsSwiper && !carsSwiper.contains(e.target)) {

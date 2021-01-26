@@ -31,22 +31,31 @@ i[class^="icon"] {
 }
 
 //用户界面
-.icon-user-link-001 {
-    background-image: url(~@/assets/images/icon/icon-router-link-001.png);
+.icon-user-my {
+    background-image: url(~@/assets/images/icon/icon-my.png);
 }
 
-.icon-user-link-002 {
-    background-image: url(~@/assets/images/icon/icon-router-link-002.png);
+.icon-user-order {
+    background-image: url(~@/assets/images/icon/icon-order.png);
 }
 
-.icon-user-link-003 {
-    background-image: url(~@/assets/images/icon/icon-router-link-003.png);
+.icon-user-authentication {
+    background-image: url(~@/assets/images/icon/icon-authentication.png);
 }
 
-.icon-user-link-safe {
-    background-image: url(~@/assets/images/icon/icon-router-link-safe.png);
+.icon-user-safe {
+    background-image: url(~@/assets/images/icon/icon-safe.png);
 }
 
-.icon-user-link-005 {
-    background-image: url(~@/assets/images/icon/icon-router-link-005.png);
+.icon-user-more {
+    background-image: url(~@/assets/images/icon/icon-more.png);
+}
+
+//
+.icon-success {
+    background-image: url(~@/assets/images/icon/success.png);
+}
+
+.icon-fail {
+    background-image: url(~@/assets/images/icon/fail.png);
 }

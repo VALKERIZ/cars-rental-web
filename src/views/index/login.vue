@@ -46,7 +46,7 @@
 <script>
 import sha1 from "js-sha1";
 import { validate_email, validate_password } from "@/utils/validate";
-import { GetCode, Register, Login } from "@/api/login";
+import { GetCode, Login } from "@/api/login";
 import { getToken, setToken, setUsername } from "@/utils/cookies";
 export default {
   name: "Login",
@@ -157,6 +157,8 @@ export default {
             message: response.message,
             type: "success",
           });
+          let code = response.message.split("：")[1];
+          this.form.code = code;
           // 激活按钮
           this.submit_disabled = false;
           // 清除加载

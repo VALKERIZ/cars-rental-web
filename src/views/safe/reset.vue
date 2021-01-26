@@ -1,6 +1,6 @@
 <template>
   <div class="user-container">
-    <Back column="修改登录密码" />
+    <Back />
     <div class="form-ui">
       <el-form ref="form" :model="form">
         <el-form-item>
@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: "Password",
+  name: "Reset",
   data() {
     return {
       form: {

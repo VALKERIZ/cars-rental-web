@@ -14,7 +14,7 @@
       :parking="parking"
       ref="amap"
     />
-    <!-- 登录 -->
+    <!-- 获取后端数据的登录 -->
     <Login></Login>
   </div>
 </template>
@@ -26,7 +26,6 @@ import Navbar from "@c/navbar";
 import Login from "./login";
 // API
 import { Parking } from "@/api/parking";
-import { GetCarsList, GetLeaseList } from "@/api/cars";
 export default {
   name: "Index",
   components: {

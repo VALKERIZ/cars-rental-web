@@ -11,21 +11,67 @@ const routes = [{
     children: [{
             path: "/user",
             name: "User",
+            meta: {
+                title: "用户中心",
+            },
             component: () =>
-                import ("../views/user/index.vue"),
+                import ("../views/user/index"),
         },
-        //安全设置
+        /**
+         * 一.帐户
+         */
+        // 1.登录
+        {
+            path: "/login",
+            name: "Login",
+            meta: {
+                title: "登录",
+            },
+            component: () =>
+                import ("../views/account/login"),
+        },
+        // 2.注册
+        {
+            path: "/register",
+            name: "Register",
+            meta: {
+                title: "注册",
+            },
+            component: () =>
+                import ("../views/account/register"),
+        },
+        // 3.忘记密码
+        {
+            path: "/forget",
+            name: "Forget",
+            meta: {
+                title: "忘记密码",
+            },
+            component: () =>
+                import ("../views/account/forget"),
+        },
+        /**
+         * 二.安全设置
+         */
+        //   1.首页
         {
             path: "/safe",
             name: "Safe",
+            meta: {
+                title: "安全设置",
+            },
             component: () =>
-                import ("../views/safe/index.vue"),
+                import ("../views/safe/index"),
         },
+        // 2.重置密码
         {
-            path: "/password",
-            name: "Password",
+            path: "/reset",
+            name: "Reset",
+            meta: {
+                title: "重置密码",
+            },
             component: () =>
-                import ("../views/safe/password.vue"),
+                import ("../views/safe/reset"),
         },
     ],
 }, ];

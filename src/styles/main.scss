@@ -2,7 +2,62 @@
 @import "./normalize.scss";
 @import "./ui.scss";
 @import "./icon.scss";
+@font-face {
+    font-family: "bahnschrift";
+    src: url("~@/assets/bahnschrift.ttf");
+}
+
 // 公共样式
+
+/* blank */
+
+.blank-40 {
+    height: 40px;
+}
+
+.blank-20 {
+    height: 20px;
+}
+
+.blank-100 {
+    height: 100px;
+}
+
+
+/* color */
+
+.color-main {
+    color: $color-main;
+}
+
+.color-white {
+    color: white;
+}
+
+.color-success,
+.color-OVER {
+    color: #10da06;
+}
+
+.color-fail {
+    color: #bd1b00;
+}
+
+.color-WAIT {
+    color: $color-wait;
+}
+
+.color-CANCEL {
+    color: #8c8c8c;
+}
+
+
+/* line-height */
+
+.lh-40 {
+    line-height: 40px;
+}
+
 //浮动
 .pull-left {
     float: left;
@@ -17,8 +72,20 @@
 }
 
 //字体大小
-.fz-24 {
+.fs-24 {
     font-size: 24px;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
+.fs-18 {
+    font-size: 18px;
+}
+
+.fa-b {
+    font-family: "bahnschrift";
 }
 
 //定位
@@ -28,11 +95,6 @@
 
 .p-a {
     position: absolute;
-}
-
-//颜色
-.color-main {
-    color: $color-main;
 }
 
 //文字对齐
@@ -48,7 +110,34 @@
     text-align: right;
 }
 
-//按钮
+
+/* margin */
+
+.mr-15 {
+    margin-right: 15px;
+}
+
+
+/* clearfix */
+
+.clearfix {
+    @extend %clearfix;
+}
+
+
+/* opacity */
+
+.opacity-4 {
+    opacity: 0.4;
+} // 0~1
+
+/* flex */
+
+.flex-1 {
+    flex: 1;
+}
+
+// common ui 按钮
 .select-car-btn {
     display: block;
     width: 240px;
@@ -68,6 +157,7 @@
     padding: 0 30px;
 }
 
+// router-link
 .group-links {
     a {
         position: relative;
@@ -81,20 +171,30 @@
         font-size: 15px;
     }
     .icon {
+        width: 30px;
+        height: 30px;
         margin: 0 16px -10px 0;
     }
     .arrow:after {
+        content: "";
         position: absolute;
         right: 30px;
         top: 50%;
-        margin-top: -5px;
-        content: "";
         width: 10px;
         height: 10px;
+        margin-top: -7px;
         border-top: 1px solid #fff;
         border-right: 1px solid #fff;
-        @include webkit(box-sizing, border-box);
-        @include webkit(transform, rotate(45deg));
+        @include webkit(box-sizing,
+        border-box);
+        @include webkit(transform,
+        rotate(45deg));
         opacity: 0.1;
     }
+}
+
+.button-block {
+    width: 100%;
+    display: block;
+    text-align: center;
 }
