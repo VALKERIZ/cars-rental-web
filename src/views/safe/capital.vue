@@ -4,12 +4,6 @@
     <div class="cars-form-ui">
       <el-form ref="form" :model="form">
         <el-form-item>
-          <el-input v-model="form.name" placeholder="原始密码"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-input v-model="form.name" placeholder="新密码"></el-input>
-        </el-form-item>
-        <el-form-item>
           <el-input v-model="form.name" placeholder="确认密码"></el-input>
         </el-form-item>
         <el-form-item>
@@ -27,7 +21,7 @@
 </template>
 <script>
 export default {
-  name: "Password",
+  name: "Capital",
   components: {},
   data() {
     return {

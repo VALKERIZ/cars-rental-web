@@ -1,7 +1,7 @@
 const path = require("path");
 const {
-    VUE_APP_API_LOGIN,
-    VUE_APP_API_LOGIN_TARGET,
+    VUE_APP_API_ADMIN,
+    VUE_APP_API_ADMIN_TARGET,
     VUE_APP_API_WEB,
     VUE_APP_API_WEB_TARGET,
 } = process.env;
@@ -68,11 +68,11 @@ module.exports = {
         hotOnly: false,
         proxy: {
             //登录接口
-            [VUE_APP_API_LOGIN]: {
-                target: VUE_APP_API_LOGIN_TARGET, //API服务器的地址
+            [VUE_APP_API_ADMIN]: {
+                target: VUE_APP_API_ADMIN_TARGET, //API服务器的地址
                 changeOrigin: true,
                 pathRewrite: {
-                    [`^${VUE_APP_API_LOGIN}`]: "",
+                    [`^${VUE_APP_API_ADMIN}`]: "",
                 },
             },
             //前端接口

@@ -97,17 +97,19 @@
         </ul>
         <div class="clause-dec">
           <span class="pull-left">参保《全面保障服务》用车更放心</span>
-          <i></i>
+          <i :class="{ current: isPlause }" @click="clauseClick"></i>
         </div>
       </div>
-      <a href="javascript: void(0);" class="select-car-btn">预约用车</a>
+      <a class="select-car-btn" @click="confirmCars" :disabled="true"
+        >预约用车</a
+      >
     </section>
   </div>
 </template>
 <script>
 import { getCarsAttrKey } from "@/utils/format";
 // API
-import { GetLeaseList } from "@/api/cars";
+import { GetLeaseList, ConfirmCars } from "@/api/cars";
 export default {
   name: "CarsList",
   filters: {
@@ -164,9 +166,96 @@ export default {
       leaseId: "",
       // 详细->剩余能量百分比
       power: 0,
+      // 参保
+      isPlause: false,
+      token: this.$store.state.account.token,
+      // 检验提示
+      message_item: this.$store.state.config.message_item,
+      // 临时使用
+      backup_key: "",
+      // 用户审核
+      arr: [
+        "check_real_name",
+        "check_cars",
+        "gilding",
+        "illegalAmount",
+        "subscribe",
+      ],
+      // 重复点击
+      clicked: false,
     };
   },
   methods: {
+    /** 租车 */
+    confirmCars() {
+      // 防止频繁点击
+      if (this.clicked) {
+        return;
+      }
+      this.clicked = true;
+      // 判断用户是登录
+      if (!this.token) {
+        this.$router.push({
+          name: "Login",
+        });
+        return false;
+      }
+      if (!this.leaseId) {
+        this.$message({
+          message: "请选择租车类型",
+          type: "error",
+        });
+        return false;
+      }
+      console.log(this.data.id, this.leaseId);
+      const requestData = {
+        cars_id: this.data.id,
+        cars_lease_type_id: this.leaseId,
+      };
+      ConfirmCars(requestData).then((response) => {
+        const data = response.data;
+        // 预约不成功时
+        if (data) {
+          const key = Object.keys(data); // 获取错误状态的key  []
+          if (key && key.length > 0) {
+            // 匹配 message
+            this.backup_key = key[0]; // 临时存储
+            if (this.arr.includes(key[0])) {
+              let message = "";
+              let msg = this.message_item[key[0]].msg;
+              msg && (message = msg);
+              // 弹窗提示
+              this.$confirm(message, "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning",
+              }).then(() => {
+                let router = this.message_item[this.backup_key].router;
+                let type = this.message_item[this.backup_key].type;
+                if (router && type) {
+                  this.$router.push({
+                    name: router,
+                    query: { type },
+                  });
+                }
+              });
+            }
+          }
+        } else {
+          // 预约成功
+          this.$message({
+            message: response.message,
+            type: "success",
+          });
+          // this.$router.replace({
+          //   path: "/order",
+          // });
+          this.$store.commit("app/SET_CARS_LIST_STATUS", false);
+        }
+        console.log(333);
+        this.clicked = false;
+      });
+    },
     getCasrInfo() {
       this.openCarsInfo();
     },
@@ -202,6 +291,8 @@ export default {
         const dataItem = response.data;
         if (dataItem) {
           this.leaseListData = dataItem.data;
+          // 默认选择第一项
+          this.leaseId = dataItem.data[0].carsLeaseTypeId;
         }
       });
     },
@@ -209,6 +300,10 @@ export default {
     closeCarsInfo() {
       this.cars_info_show = false;
       this.cars_info_height = 0;
+    },
+    // 参保点击事件
+    clauseClick() {
+      this.isPlause = !this.isPlause;
     },
   },
   props: {

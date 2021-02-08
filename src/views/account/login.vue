@@ -67,7 +67,7 @@ export default {
             message: response.message,
           });
           this.$router.push({
-            name: "Index",
+            name: "User",
           });
         })
         .catch((error) => {

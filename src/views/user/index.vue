@@ -3,7 +3,7 @@
     <div class="user-info">
       <img src="@/assets/images/face.png" alt="" />
       <div class="meta">
-        <h4 class="name">4674683521564897</h4>
+        <h4 class="name">{{ usename }}</h4>
         <span>
           文明驾驶分
           <strong>0</strong>
@@ -27,7 +27,7 @@
         <i class="icon icon-w-h-30 icon-user-safe"></i>
         安全设置
       </router-link>
-      <router-link to="/more" class="arrow">
+      <router-link to="/" class="arrow">
         <i class="icon icon-w-h-30 icon-user-more"></i>
         帮助中心
       </router-link>

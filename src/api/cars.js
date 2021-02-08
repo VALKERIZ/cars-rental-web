@@ -20,3 +20,14 @@ export function GetLeaseList(data = {}) {
         data,
     });
 }
+
+/**
+ * 租车
+ */
+export function ConfirmCars(data = {}) {
+    return service.request({
+        method: "post",
+        url: `${process.env.VUE_APP_API_WEB}/confirmCars/`,
+        data,
+    });
+}
