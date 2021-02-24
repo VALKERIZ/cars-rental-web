@@ -19,6 +19,15 @@ export function OrderList(data = {}) {
     });
 }
 
+/** 订单详情 */
+// export function OrderDetailed(data = {}) {
+//     return service.request({
+//         method: "post",
+//         url: `${process.env.VUE_APP_API_WEB}/orderDetailed`,
+//         data,
+//     });
+// }
+
 /** 查找正在使用的车辆 */
 export function GetCarsActivation(data = {}) {
     return service.request({
@@ -33,15 +42,6 @@ export function CarsGet(data = {}) {
     return service.request({
         method: "post",
         url: `${process.env.VUE_APP_API_WEB}/carsGet/`,
-        data,
-    });
-}
-
-/** 还车 */
-export function CarsReturn(data = {}) {
-    return service.request({
-        method: "post",
-        url: `${process.env.VUE_APP_API_WEB}/carsReturn/`,
         data,
     });
 }

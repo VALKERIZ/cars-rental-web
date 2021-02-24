@@ -85,11 +85,26 @@
   </div>
 </template>
 <script>
+// API
+// import { OrderDetailed } from "@/api/order";
 export default {
   name: "OrderDetailed",
   components: {},
   data() {
     return {};
+  },
+  mounted() {
+    // this.getOrderDetailed();
+  },
+  methods: {
+    // getOrderDetailed() {
+    //   OrderDetailed({
+    //     order_no: "3E7XYelEOagF8ZPYsM8TVO5XbE2lZk",
+    //   }).then((response) => {
+    //     const data = response.data;
+    //     console.log(data);
+    //   });
+    // },
   },
 };
 </script>

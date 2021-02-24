@@ -38,7 +38,6 @@ import { Parking } from "@/api/parking";
 import {
   GetCarsActivation,
   CarsGet,
-  CarsReturn,
   CarsReturns,
   CarsCancel,
 } from "@/api/order";
@@ -145,7 +144,6 @@ export default {
           this.carsGet();
           break;
         case "RETURN":
-          // this.carsReturn();
           this.carsReturns();
           break;
       }
@@ -168,21 +166,7 @@ export default {
       });
       this.parking_id = null;
     },
-    /** 还车 */
-    // carsReturn() {
-    //   CarsReturn({
-    //     order_no: this.cars_active_data.order_no,
-    //     cars_id: this.cars_active_data.cars_id,
-    //   }).then((response) => {
-    //     this.$message({
-    //       message: response.message,
-    //       type: "success",
-    //     });
-    //     this.cars_active_data = null;
-    //     localStorage.removeItem("cars_active");
-    //     this.commitStatus(response.data.order_status);
-    //   });
-    // },
+
     /** 还车(需要停车场id) */
     carsReturns() {
       if (!this.parking_id) {
