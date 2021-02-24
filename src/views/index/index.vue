@@ -5,7 +5,16 @@
       <router-view />
     </div>
     <!-- 底部操作栏 -->
-    <Navbar />
+    <Navbar>
+      <template v-slot:center_button>
+        <a
+          class="select-car-btn"
+          href="javascript: void(0);"
+          @click="centerClick"
+          >{{ showStatus }}</a
+        >
+      </template>
+    </Navbar>
     <!-- 汽车列表 -->
     <Cars ref="cars" />
     <!-- 地图组件 -->
@@ -16,46 +25,6 @@
     />
     <!-- 获取后端数据的登录 -->
     <Login></Login>
-    <!-- 车辆使用情况 -->
-    <div
-      class="cars_activation"
-      v-if="cars_active_data && cars_active_data.order_no"
-    >
-      <router-link
-        :to="{
-          path: '/orderDetailed',
-          query: { order_no: cars_active_data.order_no },
-        }"
-        class="color-white"
-        >正在使用的车辆</router-link
-      >
-    </div>
-    <div
-      class="button-group"
-      v-if="cars_active_data && cars_active_data.order_no"
-    >
-      <el-button
-        type="primary"
-        size="small"
-        @click="carsGet"
-        v-if="cars_active_data.order_status == 'WAIT'"
-        >取车</el-button
-      >
-      <el-button
-        type="primary"
-        size="small"
-        @click="carsReturn"
-        v-if="cars_active_data.order_status == 'RETURN'"
-        >还车</el-button
-      >
-      <el-button
-        type="primary"
-        size="small"
-        @click="carsCancel"
-        v-if="cars_active_data.order_status == 'WAIT'"
-        >取消</el-button
-      >
-    </div>
   </div>
 </template>
 
@@ -70,7 +39,7 @@ import {
   GetCarsActivation,
   CarsGet,
   CarsReturn,
-  CarsReturnS,
+  CarsReturns,
   CarsCancel,
 } from "@/api/order";
 export default {
@@ -85,14 +54,22 @@ export default {
     return {
       parking: [],
       cars_active_data: JSON.parse(localStorage.getItem("cars_active")),
+      parking_id: null,
     };
   },
   beforeMount() {
-    !this.cars_active_data && this.getCarsActivation();
+    this.getCarsActivation();
   },
   computed: {
     showUser() {
       return this.$route.name !== "Index" ? true : false;
+    },
+    status() {
+      return this.$store.state.order.operationStatus;
+    },
+    showStatus() {
+      let obj = this.$store.state.config.order_status;
+      return obj[this.status].zh;
     },
   },
   methods: {
@@ -125,9 +102,6 @@ export default {
           };
         });
         this.parking = data;
-        // 获取停车场的id
-        const parking_id = data.map((i) => i.id);
-        this.$store.commit("parking/SET_PARKING_ID", parking_id);
       });
     },
     // 路线规划
@@ -142,7 +116,16 @@ export default {
     // 停车场车辆列表
     getCarsList(e) {
       const data = e.target.getExtData();
+      console.log(data);
+      this.parking_id = data.id;
       this.$refs.cars && this.$refs.cars.getCarsList(data.id);
+    },
+    // 提交当前操作状态
+    commitStatus(value) {
+      this.$store.commit(
+        "order/SET_OPERATION_STATUS",
+        value || this.cars_active_data.order_status
+      );
     },
     /** 获取正在使用的车辆 */
     getCarsActivation() {
@@ -151,8 +134,21 @@ export default {
         if (data) {
           this.cars_active_data = data;
           localStorage.setItem("cars_active", JSON.stringify(data));
+          this.commitStatus();
         }
       });
+    },
+    centerClick() {
+      console.log(this.status);
+      switch (this.status) {
+        case "WAIT":
+          this.carsGet();
+          break;
+        case "RETURN":
+          // this.carsReturn();
+          this.carsReturns();
+          break;
+      }
     },
     /** 取车 */
     carsGet() {
@@ -167,37 +163,49 @@ export default {
             "cars_active",
             JSON.stringify(this.cars_active_data)
           );
+          this.commitStatus();
         }
       });
+      this.parking_id = null;
     },
     /** 还车 */
-    carsReturn() {
-      CarsReturn({
-        order_no: this.cars_active_data.order_no,
-        cars_id: this.cars_active_data.cars_id,
-      }).then((response) => {
-        this.$message({
-          message: response.message,
-          type: "success",
-        });
-        this.cars_active_data = null;
-        localStorage.removeItem("cars_active");
-      });
-    },
+    // carsReturn() {
+    //   CarsReturn({
+    //     order_no: this.cars_active_data.order_no,
+    //     cars_id: this.cars_active_data.cars_id,
+    //   }).then((response) => {
+    //     this.$message({
+    //       message: response.message,
+    //       type: "success",
+    //     });
+    //     this.cars_active_data = null;
+    //     localStorage.removeItem("cars_active");
+    //     this.commitStatus(response.data.order_status);
+    //   });
+    // },
     /** 还车(需要停车场id) */
     carsReturns() {
-      CarsReturns({
-        order_no: this.cars_active_data.order_no,
-        cars_id: this.cars_active_data.cars_id,
-        parking_id: "",
-      }).then((response) => {
-        this.$message({
-          message: response.message,
-          type: "success",
+      if (!this.parking_id) {
+        this.$confirm("请选择要归还的停车场", "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
         });
-        this.cars_active_data = null;
-        localStorage.removeItem("cars_active");
-      });
+      } else {
+        CarsReturns({
+          order_no: this.cars_active_data.order_no,
+          cars_id: this.cars_active_data.cars_id,
+          parking_id: this.parking_id,
+        }).then((response) => {
+          this.$message({
+            message: response.message,
+            type: "success",
+          });
+          this.cars_active_data = null;
+          localStorage.removeItem("cars_active");
+          this.commitStatus(response.data.order_status);
+        });
+      }
     },
 
     /** 取消 */
@@ -225,6 +233,13 @@ export default {
           this.$refs.amap.parkingInfo = [];
         } // 为 false 时，点击的不是车辆列表
         this.$store.commit("app/SET_CARS_LIST_STATUS", true);
+      },
+    },
+    "$store.state.order.ordered": {
+      handler(newValue) {
+        if (newValue) {
+          this.getCarsActivation();
+        }
       },
     },
   },

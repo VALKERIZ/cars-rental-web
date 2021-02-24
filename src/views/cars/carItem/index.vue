@@ -247,12 +247,9 @@ export default {
             message: response.message,
             type: "success",
           });
-          // this.$router.replace({
-          //   path: "/order",
-          // });
           this.$store.commit("app/SET_CARS_LIST_STATUS", false);
+          this.$store.commit("order/SET_ORDERED", true);
         }
-        console.log(333);
         this.clicked = false;
       });
     },

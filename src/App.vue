@@ -16,7 +16,7 @@ export default {
         // 抬起时，如果不在列表范围内，需要隐藏列表
         const isRequestCarsList = this.$store.state.app.isRequestCarsList;
         if (!isRequestCarsList) {
-          // false 不是停车场
+          // false 不是在请求汽车列表状态
           this.$store.commit("app/SET_CARS_LIST_STATUS", false);
         }
         /**

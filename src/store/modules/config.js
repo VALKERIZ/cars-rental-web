@@ -46,6 +46,18 @@ const state = {
             zh: "待还车",
         },
     },
+    // 订单状态
+    order_status: {
+        WAIT: {
+            zh: "已预约，取车",
+        },
+        OVER: {
+            zh: "请选择车辆",
+        },
+        RETURN: {
+            zh: "还车",
+        },
+    },
 };
 const getters = {};
 const mutations = {};

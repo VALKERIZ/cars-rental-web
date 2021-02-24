@@ -118,16 +118,27 @@ export default {
     },
     // 获取自身定位成功的回调
     selfLocationComplete(result) {
-      this.self_lng = result[0];
-      this.self_lat = result[1];
+      this.self_lng = result.position.lng;
+      this.self_lat = result.position.lat;
       const obj = {
-        radius: 4,
+        radius: 6,
         color: "#393e43",
-        strokeOpacity: "0.2",
+        strokeOpacity: "0.3",
         strokeWeight: "30",
       };
-      obj.center = result;
+      obj.center = [this.self_lng, this.self_lat];
       this.circle.push(obj);
+      /* location2*/
+      // this.self_lng = result[0];
+      // this.self_lat = result[1];
+      // const obj = {
+      //   radius: 4,
+      //   color: "#393e43",
+      //   strokeOpacity: "0.2",
+      //   strokeWeight: "30",
+      // };
+      // obj.center = result;
+      // this.circle.push(obj);
     },
     // 步行导航
     handlerWalking(lnglat) {

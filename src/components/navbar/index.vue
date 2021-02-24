@@ -4,8 +4,11 @@
       <li><i class="icon icon-w-h-44 icon-help"></i></li>
       <li><i class="icon icon-w-h-44 icon-search"></i></li>
       <li>
-        <a href="javascript: void(0);" class="select-car-btn">选择车辆</a>
+        <slot name="center_button" />
       </li>
+      <!-- <li>
+        <a class="select-car-btn" href="javascript: void(0);">请选择车辆</a>
+      </li> -->
       <li>
         <i class="icon icon-w-h-44 icon-location" @click="selfLocation"></i>
       </li>
