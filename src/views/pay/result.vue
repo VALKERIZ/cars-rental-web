@@ -21,7 +21,7 @@
 </template>
 <script>
 export default {
-  name: "PayStatus",
+  name: "PayResult",
   components: {},
   data() {
     return {

@@ -73,35 +73,15 @@ const routes = [{
             component: () =>
                 import ("../views/safe/reset"),
         },
-        // 3.设置资金密码
+        // 3.银行卡列表
         {
-            path: "/capital",
-            name: "Capital",
-            meta: {
-                title: "设置资金密码",
-            },
-            component: () =>
-                import ("../views/safe/capital"),
-        },
-        // 4.绑定银行卡
-        {
-            path: "/bank",
-            name: "Bank",
+            path: "/bankcard",
+            name: "Bankcard",
             meta: {
                 title: "绑定银行卡",
             },
             component: () =>
-                import ("../views/safe/bank"),
-        },
-        // 5.添加银行卡
-        {
-            path: "/bankAdd",
-            name: "BankAdd",
-            meta: {
-                title: "添加银行卡",
-            },
-            component: () =>
-                import ("../views/safe/bankAdd"),
+                import ("../views/safe/bankcard"),
         },
         /**
          * 三.我的帐户

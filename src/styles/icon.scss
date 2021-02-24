@@ -51,11 +51,20 @@ i[class^="icon"] {
     background-image: url(~@/assets/images/icon/icon-more.png);
 }
 
-//
+//支付状态
 .icon-success {
     background-image: url(~@/assets/images/icon/success.png);
 }
 
 .icon-fail {
     background-image: url(~@/assets/images/icon/fail.png);
+}
+
+// 安全设置
+.icon-safe-bankcard {
+    background-image: url(~@/assets/images/icon/icon-bankcard.png);
+}
+
+.icon-safe-reset {
+    background-image: url(~@/assets/images/icon/icon-reset.png);
 }

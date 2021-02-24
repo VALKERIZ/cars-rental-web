@@ -3,16 +3,12 @@
     <Back />
     <ul class="group-links">
       <router-link to="/reset" class="arrow">
+        <i class="icon icon-w-h-30 icon-safe-reset"></i>
         修改登录密码
       </router-link>
-      <router-link to="capital" class="arrow">
-        设置资金密码
-      </router-link>
-      <!-- <router-link to="aa" class="arrow">
-        绑定手机号
-      </router-link> -->
-      <router-link to="/bank" class="arrow">
-        绑定银行卡
+      <router-link to="/bankcard" class="arrow">
+        <i class="icon icon-w-h-30 icon-safe-bankcard"></i>
+        银行卡
       </router-link>
     </ul>
   </div>

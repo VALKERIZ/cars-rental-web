@@ -111,7 +111,7 @@ import { getCarsAttrKey } from "@/utils/format";
 // API
 import { GetLeaseList, ConfirmCars } from "@/api/cars";
 export default {
-  name: "CarsList",
+  name: "CarsItem",
   filters: {
     kmCheck(val) {
       return isNaN(Number(val)) ? "?" : val;

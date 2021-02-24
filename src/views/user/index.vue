@@ -6,7 +6,7 @@
         <h4 class="name">{{ usename }}</h4>
         <span>
           文明驾驶分
-          <strong>0</strong>
+          <strong>200</strong>
         </span>
       </div>
     </div>
@@ -49,7 +49,7 @@ export default {
       this.$store.dispatch("account/logoutAction").then(() => {
         this.$message({
           type: "success",
-          message: "已退出登录!!",
+          message: "已退出登录",
         });
         this.$router.replace({
           name: "Index",

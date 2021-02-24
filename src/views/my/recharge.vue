@@ -66,7 +66,7 @@
 <script>
 import { AmountList, Pay } from "@/api/pay";
 export default {
-  name: "User",
+  name: "Recharge",
   components: {},
   data() {
     return {

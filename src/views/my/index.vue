@@ -64,7 +64,7 @@
 </template>
 <script>
 export default {
-  name: "User",
+  name: "My",
   components: {},
   data() {
     return {

@@ -98,6 +98,7 @@ export default {
   },
   watch: {
     username: {
+      immediate: true,
       handler(newValue) {
         this.disabled = newValue ? false : true;
       },

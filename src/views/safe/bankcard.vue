@@ -10,46 +10,27 @@
         <h4 class="name">建设银行</h4>
         <p class="id">3568 **** **** 8888</p>
       </div>
-      <router-link to="/bankAdd">
-        <div class="avatar-uploader">
-          <div tabindex="0" class="el-upload el-upload--text">
-            <i class="el-icon-plus avatar-uploader-icon"></i>
-          </div>
+      <div class="avatar-uploader">
+        <div tabindex="0" class="el-upload el-upload--text">
+          <i class="el-icon-plus avatar-uploader-icon"></i>
         </div>
-      </router-link>
+      </div>
     </div>
   </div>
 </template>
 <script>
-import UploadVue from "@/components/upload";
 export default {
   name: "Bank",
-  components: { UploadVue },
   data() {
-    return {
-      form: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: "",
-      },
-    };
+    return {};
   },
-  methods: {
-    onSubmit() {
-      console.log("submit!");
-    },
-  },
+  methods: {},
 };
 </script>
 <style lang="scss">
 .blank {
   .item {
-    height: 190px;
+    height: 180px;
     border-radius: 10px;
     padding: 30px;
     margin-bottom: 25px;
