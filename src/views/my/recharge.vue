@@ -18,17 +18,18 @@
       </div>
     </div>
     <div class="cars-form-ui">
-      <el-form ref="form">
+      <el-form ref="form" @submit.native.prevent>
         <el-form-item>
-          <el-input
+          <el-input-number
             v-model.number="amount_number"
             placeholder="请输入充值金额"
-            v-on:input="inputEnter"
-          ></el-input>
+            controls-position="right"
+            :min="1"
+          ></el-input-number>
         </el-form-item>
       </el-form>
     </div>
-    <div class="blank-100"></div>
+    <div class="blank-40"></div>
     <section class="section-mode">
       <header>
         <h4 class="title">支付类型</h4>
@@ -38,7 +39,7 @@
           <li>
             <span class="pull-left">微信</span>
             <i
-              class="icon check-round"
+              class="icon check-round "
               :class="{ current: current_mode == '微信' }"
             ></i>
           </li>
@@ -72,8 +73,8 @@ export default {
     return {
       data: [],
       amount_id: "",
-      amount: "",
-      amount_number: "",
+      amount: "", //点击选择的金额
+      amount_number: "", //输入框的金额
       pay_type: this.$route.query.type,
       current_mode: "微信",
       disabled_button: true,
@@ -92,12 +93,10 @@ export default {
     getAmountList() {
       AmountList().then((response) => {
         this.data = response.data;
-        console.log(this.data);
       });
     },
-    /** 选择金额 */
+    /** 点击选择金额 */
     checkAmount(data) {
-      console.log(data);
       this.amount_id = data.id;
       this.amount = data.amount;
       this.amount_number = data.amount;
@@ -126,6 +125,7 @@ export default {
       });
     },
     inputEnter() {
+      // 清除选中
       const reg = /^[0-9]*$/;
       const status = reg.test(this.amount_number);
       this.disabled_button = !status;
@@ -133,7 +133,6 @@ export default {
 
     // 开发支付功能，支付成功后需要有一个回调地址，返回项目
     // 进行支付的过程，已经离开了项目本身，处于在微信端。支付完成或者放弃支付的时候，都会回调一个地址
-    // 订单号丢失状态。
   },
 };
 </script>
@@ -150,26 +149,7 @@ export default {
     opacity: 0.5;
   }
 }
-.price {
-  color: #fff;
-  span {
-    font-size: 40px;
-    font-family: "bahnschrift";
-  }
-  em {
-    font-size: 18px;
-  }
-}
-.goto {
-  display: inline-block;
-  height: 36px;
-  padding: 0 20px;
-  font-size: 18px;
-  line-height: 36px;
-  border: 2px solid #00a3ff;
-  border-radius: 100px;
-  color: #00a3ff;
-}
+
 .links {
   li {
     display: block;
@@ -238,5 +218,10 @@ export default {
       border-bottom: 1px solid #fff;
     }
   }
+}
+
+.el-input-number {
+  width: 300px;
+  margin-left: 20px;
 }
 </style>

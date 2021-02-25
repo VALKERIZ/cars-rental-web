@@ -39,7 +39,6 @@ export default {
       } else {
         this.text = "驾驶证";
       }
-      console.log(this.$refs.upload);
       this.$refs.upload.forEach((i) => {
         i.imageUrl = "";
       });

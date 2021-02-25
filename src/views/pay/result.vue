@@ -31,7 +31,7 @@ export default {
   methods: {
     backHome() {
       this.$router.replace({
-        path: "user",
+        path: "my",
       });
     },
   },

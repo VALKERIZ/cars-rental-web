@@ -5,6 +5,7 @@
       <el-tab-pane label="全部" name="all"></el-tab-pane>
       <el-tab-pane label="待取车" name="WAIT"></el-tab-pane>
       <el-tab-pane label="待还车" name="RETURN"></el-tab-pane>
+      <el-tab-pane label="取消" name="CANCEL"></el-tab-pane>
       <el-tab-pane label="已完成" name="OVER"></el-tab-pane>
     </el-tabs>
     <!-- 滚动部分 -->
