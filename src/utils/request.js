@@ -31,7 +31,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     function(response) {
         const data = response.data;
-        // 不为0，即接口异常时
+        // 不为0，即接口返回数据异常时
         if (data.resCode !== 0) {
             Message.error(data.message);
             return Promise.reject(data);

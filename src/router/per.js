@@ -8,6 +8,5 @@ router.beforeEach((to, form, next) => {
         document.title = routerName;
         store.commit("app/SET_ROUTER_NAME", routerName);
     }
-
     next();
 });

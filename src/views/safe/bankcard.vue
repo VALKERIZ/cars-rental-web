@@ -30,7 +30,7 @@ export default {
 <style lang="scss">
 .blank {
   .item {
-    height: 180px;
+    height: 170px;
     border-radius: 10px;
     padding: 30px;
     margin-bottom: 25px;

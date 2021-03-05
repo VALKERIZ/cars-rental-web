@@ -14,13 +14,14 @@ export function setToken(value) {
 export function removeToken() {
     return Cookies.remove(tokenKey);
 }
-// 写入userName
-export function setUsername(value) {
-    return Cookies.set(userNameKey, value);
-}
+
 // 获取userName
 export function getUsername() {
     return Cookies.get(userNameKey);
+}
+// 写入userName
+export function setUsername(value) {
+    return Cookies.set(userNameKey, value);
 }
 // 删除userName
 export function removeUsername() {

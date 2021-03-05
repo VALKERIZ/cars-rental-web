@@ -40,7 +40,6 @@ export default {
         password: "",
       },
     };
-    // 复用性
   },
   methods: {
     onSubmit() {

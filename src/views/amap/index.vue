@@ -59,7 +59,6 @@ import { AMapManager, lazyAMapApiLoaderInstance } from "vue-amap";
 import { SelfLocation } from "./location";
 import { Walking } from "./walking";
 
-let amapManager = new AMapManager();
 export default {
   name: "Amap",
   props: {
@@ -74,7 +73,7 @@ export default {
       map: null,
       zoom: 15,
       center: [0, 0],
-      amapManager,
+      amapManager: new AMapManager(),
       self_lng: "",
       self_lat: "",
       events: {
@@ -96,7 +95,7 @@ export default {
   methods: {
     initMap() {
       //存储地图实例
-      this.map = amapManager.getMap();
+      this.map = this.amapManager.getMap();
       // 初始化完成，回调
       this.$emit("callbackComponent", {
         function: "loadMap",
@@ -151,10 +150,10 @@ export default {
       });
     },
     walkingComplete(result) {
-      console.log(233, this.parkingData);
       this.parkingInfo = [
         {
           position: this.parkingData.lnglat.split(","),
+          // 距离信息
           text: `<div class='parkingInfoWrap'>
                         <span class="parkingInfoNumber">${this.parkingData.carsNumber}</span>号停车场
                         <span class="parkingInfoLine"></span>距离您${result.routes[0].distance}米

@@ -32,6 +32,7 @@ const actions = {
                 })
                 .catch((e) => {
                     reject(e);
+                    // 重复尝试
                     commit.dispatch("getQiniuToken");
                 })
                 .finally(() => {

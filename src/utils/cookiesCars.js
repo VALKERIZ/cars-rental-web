@@ -2,29 +2,29 @@ import Cookies from "js-cookie";
 /****************************************
  ****** 用户模块
  ****************************************/
-const tokenkey = "carsAccountToken";
-const usernamekey = "carsAccountUsername";
+const tokenKey = "carsAccountToken";
+const usernameKey = "carsAccountUsername";
 
 // token
 export function setToken(value) {
-    Cookies.set(tokenkey, value, { expires: 7 });
+    Cookies.set(tokenKey, value, { expires: 7 });
 }
-export function getToken(value) {
-    return Cookies.get(tokenkey);
+export function getToken() {
+    return Cookies.get(tokenKey);
 }
-export function getTokenCars(value) {
-    return Cookies.get(tokenkey);
+export function getTokenCars() {
+    return Cookies.get(tokenKey);
 }
-export function removeToken(value) {
-    return Cookies.remove(tokenkey);
+export function removeToken() {
+    return Cookies.remove(tokenKey);
 }
 // username
 export function setUsername(value) {
-    Cookies.set(usernamekey, value, { expires: 7 });
+    Cookies.set(usernameKey, value, { expires: 7 });
 }
-export function getUsername(value) {
-    return Cookies.get(usernamekey);
+export function getUsername() {
+    return Cookies.get(usernameKey);
 }
-export function removeUsername(value) {
-    return Cookies.remove(usernamekey);
+export function removeUsername() {
+    return Cookies.remove(usernameKey);
 }

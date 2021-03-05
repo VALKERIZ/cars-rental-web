@@ -112,7 +112,7 @@ export default {
         });
       }
     },
-    /** 取消预约确认 */
+    /** 取消预约 */
     confirmCancel(item) {
       console.log(item);
       this.$confirm("确定取消改车预约？", "提示", {

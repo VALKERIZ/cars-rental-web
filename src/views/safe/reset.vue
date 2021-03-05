@@ -20,7 +20,6 @@
   </div>
 </template>
 <script>
-import Username from "@/components/account/username";
 import Password from "@/components/account/password";
 import PasswordConfirm from "@/components/account/passwordConfirm";
 import Code from "@/components/code/";
@@ -29,7 +28,7 @@ import Code from "@/components/code/";
 import sha1 from "js-sha1";
 export default {
   name: "Reset",
-  components: { Username, Code, Password, PasswordConfirm },
+  components: { Code, Password, PasswordConfirm },
   data() {
     return {
       username: this.$store.state.account.username,
@@ -40,9 +39,6 @@ export default {
       },
     };
   },
-  // mounted() {
-  //   this.form.username = this.$store.state.account.username;
-  // },
   methods: {
     onSubmit() {
       this.$refs["form"].validate((valid) => {
@@ -53,7 +49,6 @@ export default {
           return false;
         }
       });
-      console.log(this.username, this.form);
     },
     // 重置密码
     resetPassword() {
@@ -62,7 +57,6 @@ export default {
         password: sha1(this.form.password), // md5，sha1
         code: this.form.code,
       };
-      console.log(requestData);
       this.$store
         .dispatch("account/forgetAction", requestData)
         .then((response) => {

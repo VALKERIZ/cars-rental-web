@@ -113,6 +113,7 @@ import { GetLeaseList, ConfirmCars } from "@/api/cars";
 export default {
   name: "CarsItem",
   filters: {
+    // 可行使公里数
     kmCheck(val) {
       return isNaN(Number(val)) ? "?" : val;
     },
@@ -131,6 +132,38 @@ export default {
         childKey: "seat_number",
       });
     },
+  },
+  data() {
+    return {
+      cars_info_show: false,
+      // 车辆信息弹窗高度
+      cars_info_height: 0,
+      // 定时器
+      timer: null,
+      // 租赁类型列表
+      leaseListData: [],
+      // 租赁ID
+      leaseId: "",
+      // 详细->剩余能量百分比
+      power: 0,
+      // 参保
+      isPlause: true,
+      token: this.$store.state.account.token,
+      // 检验提示
+      message_item: this.$store.state.config.message_item,
+      // 临时使用
+      backup_key: "",
+      // 用户审核
+      arr: [
+        "check_real_name",
+        "check_cars",
+        "gilding",
+        "illegalAmount",
+        "subscribe",
+      ],
+      // 重复点击
+      clicked: false,
+    };
   },
   computed: {
     totalKM() {
@@ -152,38 +185,6 @@ export default {
       console.log(this.power);
       return `active-li-${val}`;
     },
-  },
-  data() {
-    return {
-      cars_info_show: false,
-      // 车辆信息弹窗高度
-      cars_info_height: 0,
-      // 定时器
-      timer: null,
-      // 租赁类型列表
-      leaseListData: [],
-      // 租赁ID
-      leaseId: "",
-      // 详细->剩余能量百分比
-      power: 0,
-      // 参保
-      isPlause: false,
-      token: this.$store.state.account.token,
-      // 检验提示
-      message_item: this.$store.state.config.message_item,
-      // 临时使用
-      backup_key: "",
-      // 用户审核
-      arr: [
-        "check_real_name",
-        "check_cars",
-        "gilding",
-        "illegalAmount",
-        "subscribe",
-      ],
-      // 重复点击
-      clicked: false,
-    };
   },
   methods: {
     /** 租车 */
@@ -304,7 +305,6 @@ export default {
     },
   },
   props: {
-    // 单向数据流，也是静态属性
     data: {
       type: Object,
       default: () => ({}),

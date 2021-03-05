@@ -1,0 +1,89 @@
+.section-mode {
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    header {
+        margin-bottom: 20px;
+    }
+    .title {
+        font-size: 14px;
+        color: #fff;
+        opacity: 0.5;
+    }
+}
+
+.links {
+    li {
+        display: block;
+        height: 20px;
+        line-height: 20px;
+        position: relative;
+        padding: 11px 0;
+        color: #fff;
+        font-size: 16px;
+    }
+}
+
+.amount-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+    .item {
+        padding: 0 10px;
+        margin-bottom: 20px;
+        flex: 1;
+        @include webkit(box-sizing, border-box);
+        width: 33.33333%;
+        min-width: 33.33333%;
+        max-width: 33.33333%;
+    }
+    .a-wrap {
+        height: 48px;
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        color: #fff;
+        font-family: "bahnschrift";
+        line-height: 48px;
+        font-size: 24px;
+        &.current {
+            background-color: #00a3ff;
+            border: 1px solid #00a3ff;
+        }
+    }
+}
+
+.check-round {
+    position: relative;
+    float: right;
+    width: 18px;
+    height: 18px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    &::before {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 6px;
+        width: 10px;
+        height: 4px;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        @include webkit(transform, rotate(-45deg));
+    }
+    &.current {
+        border: 1px solid #00a3ff;
+        background-color: #00a3ff;
+        &::before {
+            content: "";
+            border-left: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+        }
+    }
+}
+
+.el-input-number {
+    width: 300px;
+    margin-left: 20px;
+}

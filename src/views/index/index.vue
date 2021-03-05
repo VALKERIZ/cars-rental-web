@@ -23,7 +23,7 @@
       :parking="parking"
       ref="amap"
     />
-    <!-- 获取后端数据的登录 -->
+    <!-- 获取后端数据的登录组件  -->
     <Login></Login>
   </div>
 </template>
@@ -47,7 +47,7 @@ export default {
   data() {
     return {
       parking: [],
-      cars_active_data: JSON.parse(localStorage.getItem("cars_active")),
+      cars_active_data: JSON.parse(localStorage.getItem("cars_active")), //本地存在的活跃车辆信息
       parking_id: null,
     };
   },
@@ -61,6 +61,7 @@ export default {
     status() {
       return this.$store.state.order.operationStatus;
     },
+    // 中央操作按钮的文字（车辆的后续可执行操作）
     showStatus() {
       let obj = this.$store.state.config.order_status;
       return obj[this.status].zh;
@@ -80,12 +81,14 @@ export default {
         const data = response.data.data;
         data.forEach((item) => {
           item.position = item.lnglat.split(",");
+          // 停车场信息
           item.content =
             "<img src='" +
             require("@/assets/images/parking_location_img.png") +
             "' />";
           item.offset = [-35, -60];
           item.offsetText = [-30, -55];
+          // 车辆信息
           item.text = `<div style="width: 60px; font-size: 20px; color: #fff; text-align: center;line-height: 50px; height: 60px;">${item.carsNumber}</div>`;
           item.events = {
             click: (e) => {
@@ -107,10 +110,9 @@ export default {
       });
       this.$refs.amap && this.$refs.amap.handlerWalking(data.lnglat.split(","));
     },
-    // 停车场车辆列表
+    // 停车场的车辆列表
     getCarsList(e) {
       const data = e.target.getExtData();
-      console.log(data);
       this.parking_id = data.id;
       this.$refs.cars && this.$refs.cars.getCarsList(data.id);
     },
@@ -133,7 +135,6 @@ export default {
       });
     },
     centerClick() {
-      console.log(this.status);
       switch (this.status) {
         case "WAIT":
           this.carsGet();

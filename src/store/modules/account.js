@@ -3,15 +3,15 @@ import { Register, Login, Forget } from "@/api/account";
 // cookies
 import {
     setToken,
-    setUsername,
-    removeToken,
-    removeUsername,
     getToken,
+    removeToken,
+    setUsername,
     getUsername,
+    removeUsername,
 } from "@/utils/cookiesCars";
 const state = {
     token: getToken() || "",
-    username: getUsername() || "", // 获取数据的来源
+    username: getUsername() || "",
 };
 const getters = {};
 const mutations = {
@@ -23,7 +23,7 @@ const mutations = {
     },
 };
 const actions = {
-    // 复用性
+    // 注册
     registerAction(context, requestData) {
         return new Promise((resolve, reject) => {
             Register(requestData)
@@ -35,6 +35,7 @@ const actions = {
                 });
         });
     },
+    // 登录
     loginAction(context, requestData) {
         return new Promise((resolve, reject) => {
             Login(requestData)
@@ -51,6 +52,7 @@ const actions = {
                 });
         });
     },
+    // 忘记密码
     forgetAction(context, requestData) {
         return new Promise((resolve, reject) => {
             Forget(requestData)
@@ -62,6 +64,7 @@ const actions = {
                 });
         });
     },
+    // 登出
     logoutAction(context, requestData) {
         return new Promise((resolve) => {
             context.commit("SET_TOKEN", "");

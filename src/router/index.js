@@ -106,6 +106,26 @@ const routes = [{
             component: () =>
                 import ("../views/my/recharge"),
         },
+        // 3.支付状态
+        {
+            path: "/payStatus",
+            name: "PayStatus",
+            meta: {
+                title: "支付状态",
+            },
+            component: () =>
+                import ("../views/pay/status"),
+        },
+        // 4.支付结果
+        {
+            path: "/payResult",
+            name: "PayResult",
+            meta: {
+                title: "支付结果",
+            },
+            component: () =>
+                import ("../views/pay/result"),
+        },
         /*
          *四.实名认证
          */
@@ -140,24 +160,6 @@ const routes = [{
             },
             component: () =>
                 import ("../views/order/detailed"),
-        },
-        {
-            path: "/payStatus",
-            name: "PayStatus",
-            meta: {
-                title: "支付状态",
-            },
-            component: () =>
-                import ("../views/pay/status"),
-        },
-        {
-            path: "/payResult",
-            name: "PayResult",
-            meta: {
-                title: "支付结果",
-            },
-            component: () =>
-                import ("../views/pay/result"),
         },
     ],
 }, ];
