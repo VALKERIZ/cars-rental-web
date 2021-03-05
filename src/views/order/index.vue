@@ -25,12 +25,22 @@
             </div>
           </div>
           <p class="number">{{ item.carsNumber }}</p>
-          <div>
+          <template v-if="item.order_status == 'OVER'">
             <div class="price pr arrow" @click="detailed">
               <em>￥</em>
               <span>2000.00</span>
             </div>
-          </div>
+          </template>
+          <template v-else-if="item.order_status == 'WAIT'">
+            <el-button
+              type="danger"
+              class="button-block"
+              round
+              size="small"
+              @click="confirmCancel(item)"
+              >取消预约</el-button
+            >
+          </template>
         </div>
       </swiper-slide>
       <div class="swiper-scrollbar" slot="scrollbar"></div>
@@ -42,6 +52,7 @@ import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
 // API
 import { OrderList } from "@/api/order";
+import { CarsCancel } from "@/api/order";
 export default {
   name: "Order",
   components: {
@@ -85,11 +96,13 @@ export default {
         this.showData = this.orderListData;
       });
     },
+    /** 进去详情页面 */
     detailed() {
       this.$router.push({
         name: "OrderDetailed",
       });
     },
+    /** tab切换 */
     tabClick(tab) {
       if (tab.name == "all") {
         this.showData = this.orderListData;
@@ -98,6 +111,26 @@ export default {
           return i.order_status == tab.name;
         });
       }
+    },
+    /** 取消预约确认 */
+    confirmCancel(item) {
+      console.log(item);
+      this.$confirm("确定取消改车预约？", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      }).then(() => {
+        CarsCancel({
+          order_no: item.order_no,
+          cars_id: item.id,
+        }).then((response) => {
+          this.$message({
+            message: response.message,
+            type: "success",
+          });
+          localStorage.removeItem("cars_active");
+        });
+      });
     },
   },
 };

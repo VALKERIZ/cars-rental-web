@@ -35,12 +35,7 @@ import Navbar from "@c/navbar";
 import Login from "./login";
 // API
 import { Parking } from "@/api/parking";
-import {
-  GetCarsActivation,
-  CarsGet,
-  CarsReturns,
-  CarsCancel,
-} from "@/api/order";
+import { GetCarsActivation, CarsGet, CarsReturns } from "@/api/order";
 export default {
   name: "Index",
   components: {
@@ -190,21 +185,6 @@ export default {
           this.commitStatus(response.data.order_status);
         });
       }
-    },
-
-    /** 取消 */
-    carsCancel() {
-      CarsCancel({
-        order_no: this.cars_active_data.order_no,
-        cars_id: this.cars_active_data.cars_id,
-      }).then((response) => {
-        this.$message({
-          message: response.message,
-          type: "success",
-        });
-        this.cars_active_data = null;
-        localStorage.removeItem("cars_active");
-      });
     },
   },
   watch: {

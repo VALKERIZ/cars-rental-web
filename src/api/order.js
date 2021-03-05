@@ -28,7 +28,7 @@ export function OrderList(data = {}) {
 //     });
 // }
 
-/** 查找正在使用的车辆 */
+/** 查找正在使用的车辆情况 */
 export function GetCarsActivation(data = {}) {
     return service.request({
         method: "post",
