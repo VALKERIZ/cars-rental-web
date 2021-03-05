@@ -9,7 +9,7 @@
       <el-tab-pane label="已完成" name="OVER"></el-tab-pane>
     </el-tabs>
     <!-- 滚动部分 -->
-    <swiper class="swiper" :options="swiperOption">
+    <swiper class="order-swiper" :options="swiperOption">
       <swiper-slide class="wrapper">
         <div class="item" v-for="item in showData" :key="item.order_no">
           <div class="info">

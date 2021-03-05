@@ -8,7 +8,7 @@
     padding: 0 10px 0 5px;
     font-size: 12px;
     background-color: #34393f;
-    width: 160px;
+    @include webkit(width, max-content);
 }
 
 .parkingInfoNumber {

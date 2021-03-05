@@ -118,27 +118,28 @@ export default {
     },
     // 获取自身定位成功的回调
     selfLocationComplete(result) {
-      this.self_lng = result.position.lng;
-      this.self_lat = result.position.lat;
+      /* location*/
+      // this.self_lng = result.position.lng;
+      // this.self_lat = result.position.lat;
+      // const obj = {
+      //   radius: 6,
+      //   color: "#393e43",
+      //   strokeOpacity: "0.3",
+      //   strokeWeight: "30",
+      // };
+      // obj.center = [this.self_lng, this.self_lat];
+      // this.circle.push(obj);
+      /* location2*/
+      this.self_lng = result[0];
+      this.self_lat = result[1];
       const obj = {
         radius: 6,
         color: "#393e43",
         strokeOpacity: "0.3",
         strokeWeight: "30",
       };
-      obj.center = [this.self_lng, this.self_lat];
+      obj.center = result;
       this.circle.push(obj);
-      /* location2*/
-      // this.self_lng = result[0];
-      // this.self_lat = result[1];
-      // const obj = {
-      //   radius: 4,
-      //   color: "#393e43",
-      //   strokeOpacity: "0.2",
-      //   strokeWeight: "30",
-      // };
-      // obj.center = result;
-      // this.circle.push(obj);
     },
     // 步行导航
     handlerWalking(lnglat) {
@@ -150,12 +151,13 @@ export default {
       });
     },
     walkingComplete(result) {
+      console.log(233, this.parkingData);
       this.parkingInfo = [
         {
           position: this.parkingData.lnglat.split(","),
           text: `<div class='parkingInfoWrap'>
-                        <span class="parkingInfoNumber">${this.parkingData.carsNumber}</span>
-                        辆车<span class="parkingInfoLine"></span>距离您${result.routes[0].distance}米
+                        <span class="parkingInfoNumber">${this.parkingData.carsNumber}</span>号停车场
+                        <span class="parkingInfoLine"></span>距离您${result.routes[0].distance}米
                     </div>`,
           offset: [-15, -54],
         },
