@@ -11,7 +11,7 @@ const state = {
             type: "drive",
         },
         gilding: {
-            msg: "您还没交押金，请先缴纳押金哦",
+            msg: "您缴纳的押金少于1500元，请先缴纳足够的押金哦",
             router: "Recharge",
             type: "gilding",
         },

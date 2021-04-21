@@ -199,13 +199,13 @@ export default {
         this.$router.push({
           name: "Login",
         });
-        return false;
       }
       if (!this.leaseId) {
         this.$message({
           message: "请选择租车类型",
           type: "error",
         });
+        this.clicked = false
         return false;
       }
       console.log(this.data.id, this.leaseId);
@@ -288,15 +288,15 @@ export default {
       GetLeaseList({ carsId: this.data.id }).then((response) => {
         const dataItem = response.data;
         if (dataItem) {
-          this.leaseListData = dataItem.data;
-          // 默认选择第一项
-          this.leaseId = dataItem.data[0].carsLeaseTypeId;
+          this.leaseListData = dataItem.data.filter((i) => {
+            return i.price > 0;
+          });
         }
       });
     },
     /** 关闭车辆信息 */
     closeCarsInfo() {
-      this.cars_info_show = false;
+      // this.cars_info_show = false;  //会导致整个车辆列表模块消失
       this.cars_info_height = 0;
     },
     // 参保点击事件

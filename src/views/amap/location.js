@@ -1,26 +1,23 @@
-let citySearch = null;
+let geolocation = null;
 
 export function SelfLocation(params) {
-    //根据IP返回对应城市信息
-    if (!citySearch) {
-        citySearch = new AMap.CitySearch();
+    //浏览器精确定位
+    if (!geolocation) {
+        geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true, //是否使用高精度定位，默认:true
+            timeout: 10000, //超过10秒后停止定位，默认：5s
+            zoomToAccuracy: true, //定位成功后是否自动调整地图视野到定位点
+            showMarker: false, //定位成功后在定位到的位置显示点标记
+            showButton: false, //显示定位按钮
+        });
     }
-    //自动获取用户IP，返回当前城市
-    citySearch.getLocalCity((status, result) => {
-        if (status === "complete" && result.info === "OK") {
-            console.log("定位成功");
-            //地图显示当前城市
-            params.map.setBounds(result.bounds);
-            // 计算中心点
-            let [one, two] = result.rectangle.split(";");
-            let lt = one.split(",");
-            let rb = two.split(",");
-            const lng = (+rb[0] + +lt[0]) / 2;
-            const lat = (+rb[1] + +lt[1]) / 2;
-            let center = [lng, lat];
+    params.map.addControl(geolocation);
+    geolocation.getCurrentPosition((status, result) => {
+        console.log(result);
+        if (status == "complete") {
             params.complete &&
                 typeof params.complete === "function" &&
-                params.complete(center);
+                params.complete(result);
         } else {
             //解析定位错误信息
             console.log(result);

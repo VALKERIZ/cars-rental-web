@@ -187,6 +187,7 @@
         margin: 32px 0 28px;
     }
     .select-car-btn {
+        cursor: pointer;
         position: absolute;
         left: 50%;
         margin-left: -120px;
@@ -195,6 +196,7 @@
 }
 
 .cars-type-list {
+    cursor: pointer;
     li {
         height: 43px;
         padding: 0 17px 0 20px;
@@ -241,5 +243,8 @@
             border-bottom: 2px solid #fff;
             @include webkit(transform, rotate(-45deg));
         }
+    }
+    span{
+        color: #999c9f;
     }
 }
